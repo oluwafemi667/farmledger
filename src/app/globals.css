@@ -2,26 +2,213 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+  :root,
+  :root[data-theme="dark"] {
+      color-scheme: dark;
+      --c-ivory-50: 16 19 17;
+      --c-ivory-100: 7 9 8;
+      --c-ivory-200: 24 28 26;
+      --c-ivory-300: 37 43 40;
+      --c-ivory-400: 56 65 60;
+      --c-forest-50: 14 34 23;
+      --c-forest-100: 20 49 34;
+      --c-forest-600: 91 211 138;
+      --c-forest-700: 134 227 174;
+      --c-forest-800: 79 209 139;
+      --c-forest-900: 53 181 116;
+      --c-olive-100: 26 38 20;
+      --c-olive-300: 167 208 140;
+      --c-olive-500: 152 196 122;
+      --c-olive-600: 180 218 155;
+      --c-stone-400: 78 89 83;
+      --c-stone-500: 111 124 116;
+      --c-stone-600: 143 156 148;
+      --c-stone-700: 180 191 184;
+      --c-stone-800: 214 221 216;
+      --c-stone-900: 236 240 237;
+      --c-attention-100: 42 26 18;
+      --c-attention-500: 240 138 88;
+      --c-attention-600: 244 160 116;
+      --c-attention-700: 248 184 150;
+      --c-danger-100: 43 21 19;
+      --c-danger-600: 255 138 128;
+      --c-danger-700: 255 169 161;
+      --c-canvas: 7 9 8;
+      --c-ink: 236 240 237;
+      --c-focus: 79 209 139;
+    }
+  
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --c-ivory-50: 251 248 241;
+      --c-ivory-100: 246 241 231;
+      --c-ivory-200: 238 231 215;
+      --c-ivory-300: 224 215 195;
+      --c-ivory-400: 207 196 171;
+      --c-forest-50: 232 238 234;
+      --c-forest-100: 207 220 211;
+      --c-forest-600: 47 90 69;
+      --c-forest-700: 39 74 58;
+      --c-forest-800: 31 58 46;
+      --c-forest-900: 20 40 31;
+      --c-olive-100: 231 233 212;
+      --c-olive-300: 183 190 140;
+      --c-olive-500: 122 132 80;
+      --c-olive-600: 99 109 62;
+      --c-stone-400: 163 158 146;
+      --c-stone-500: 127 121 109;
+      --c-stone-600: 97 92 81;
+      --c-stone-700: 74 70 61;
+      --c-stone-800: 51 48 42;
+      --c-stone-900: 31 29 24;
+      --c-attention-100: 244 225 214;
+      --c-attention-500: 194 103 63;
+      --c-attention-600: 172 81 43;
+      --c-attention-700: 143 65 32;
+      --c-danger-100: 242 217 212;
+      --c-danger-600: 155 44 32;
+      --c-danger-700: 127 34 24;
+      --c-canvas: 246 241 231;
+      --c-ink: 31 29 24;
+      --c-focus: 31 58 46;
+    }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  html {
+    background-color: rgb(var(--c-canvas));
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-base text-ink antialiased;
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display font-semibold tracking-tight text-ink;
+  }
+
+  /* 16px inside fields on phones stops iOS zooming on focus. */
+  @media (max-width: 767px) {
+    input, select, textarea { font-size: 16px; }
+  }
+
+  ::selection {
+    @apply bg-forest-800 text-ivory-50;
+  }
+
+  /* One focus treatment everywhere: visible, high contrast, never removed. */
+  :focus-visible {
+    outline: 2px solid rgb(var(--c-focus));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Paper is white: print in the light theme whatever the screen uses. */
+  @media print {
+    :root, :root[data-theme] {
+        color-scheme: light;
+        --c-ivory-50: 251 248 241;
+        --c-ivory-100: 246 241 231;
+        --c-ivory-200: 238 231 215;
+        --c-ivory-300: 224 215 195;
+        --c-ivory-400: 207 196 171;
+        --c-forest-50: 232 238 234;
+        --c-forest-100: 207 220 211;
+        --c-forest-600: 47 90 69;
+        --c-forest-700: 39 74 58;
+        --c-forest-800: 31 58 46;
+        --c-forest-900: 20 40 31;
+        --c-olive-100: 231 233 212;
+        --c-olive-300: 183 190 140;
+        --c-olive-500: 122 132 80;
+        --c-olive-600: 99 109 62;
+        --c-stone-400: 163 158 146;
+        --c-stone-500: 127 121 109;
+        --c-stone-600: 97 92 81;
+        --c-stone-700: 74 70 61;
+        --c-stone-800: 51 48 42;
+        --c-stone-900: 31 29 24;
+        --c-attention-100: 244 225 214;
+        --c-attention-500: 194 103 63;
+        --c-attention-600: 172 81 43;
+        --c-attention-700: 143 65 32;
+        --c-danger-100: 242 217 212;
+        --c-danger-600: 155 44 32;
+        --c-danger-700: 127 34 24;
+        --c-canvas: 246 241 231;
+        --c-ink: 31 29 24;
+        --c-focus: 31 58 46;
+      }
+  
+    html {
+      background-color: rgb(var(--c-canvas));
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body { background: #fff; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Figures: tabular lining numerals in the interface face, so columns of numbers align and scan. */
+  .figure {
+    @apply font-sans tabular-nums;
+    font-feature-settings: "tnum", "lnum";
+    letter-spacing: -0.02em;
+  }
+
+  /* Quiet label above figures and table columns. */
+  .eyebrow {
+    @apply text-xs font-medium text-stone-600;
+  }
+
+  /* Ledger rules replace card borders. */
+  .rule-t {
+    @apply border-t border-ivory-300;
+  }
+  .rule-b {
+    @apply border-b border-ivory-300;
+  }
+  .rule-strong {
+    @apply border-forest-800;
+  }
+
+  .skeleton {
+    @apply rounded-sm bg-ivory-300;
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(251, 248, 241, 0.7) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    @apply animate-shimmer;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .pb-safe {
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
   }
 }
